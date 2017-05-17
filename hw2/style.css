@@ -1,0 +1,41 @@
+table{
+    border: 1px solid black;
+}
+
+/*Set border attributes..*/
+table, th, td{
+    border: 1px solid black;
+}
+
+#tsbg{
+  background: transparent;
+}
+
+tr:nth-of-type(odd) {
+    background: #2BDCDA;
+}
+
+tr:nth-of-type(even) {
+    background: #B1B7B7;
+}
+
+/*Part 3:  Edit Divs*/
+
+
+#outer-content {
+    position: static;
+    top:20px;
+    width: 75%;
+    height: 60px;
+    background-color: pink;
+} 
+
+#inner-content {
+    position: relative;
+    margin: auto;
+    top: 20px;
+    width: 75%;
+    height: 20px;
+    background-color: #ADD8E6;
+    text-align: center;
+}
