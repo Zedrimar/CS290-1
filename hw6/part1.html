@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+
+      document.addEventListener('DOMContentLoaded', bindCityButton);
+      document.addEventListener('DOMContentLoaded', bindZipButton);
+
+      function bindCityButton()
+      {
+        document.getElementById('citySubmit').addEventListener('click', function(event){
+
+          var req = new XMLHttpRequest();
+
+          var apiKey = '&appid=fa7d80c48643dfadde2cced1b1be6ca1';
+          var url = 'http://api.openweathermap.org/data/2.5/weather?units=imperial&q=';
+
+          //grab city
+          city = document.getElementById('city').value;
+
+          //send request...
+          req.open("GET", url + city  + apiKey, false);
+          req.send(null);
+
+          //add in ajax...
+          if(req.status >= 200 && req.status < 400)
+          {
+            
+
+            //For testing only..
+            console.log("Success....");
+            console.log(response);
+
+            var response = JSON.parse(req.responseText);
+
+            //set elements...
+            document.getElementById('temperature').textContent = response.main.temp;
+            document.getElementById('humidity').textContent = response.main.humidity;
+            document.getElementById('pressure').textContent = response.main.pressure;
+
+            //send off data..
+
+            //Veirfy on the console ( test work )
+            console.log(response.main.temp);
+            console.log(response.main.humidity);
+            console.log(response.main.pressure);
+
+          } 
+          // endif
+
+          else 
+          {
+            console.log("Error in network request: " + req.statusText);
+          } 
+          //end else...
+
+          event.preventDefault();
+        })
+      }
+
+
+
+      //Zip Code Event Handler..
+      function bindZipButton()
+      {
+        document.getElementById('zipSubmit').addEventListener('click', function(event)
+        {
+
+          var req = new XMLHttpRequest();
+
+          var apiKey = '&appid=fa7d80c48643dfadde2cced1b1be6ca1';
+          var url = 'http://api.openweathermap.org/data/2.5/weather?units=imperial&zip=';
+
+
+          //grab city
+          var zip = document.getElementById('zip').value;
+
+          //send request...
+          req.open("GET", url + zip + apiKey, false);
+          req.send(null);
+
+          //add in ajax...
+          if(req.status >= 200 && req.status < 400)
+          {
+            
+
+            //For testing only..
+            console.log("Success....");
+            console.log(response);
+
+            var response = JSON.parse(req.responseText);
+
+            //set elements...
+            document.getElementById('temperature').textContent = response.main.temp;
+            document.getElementById('humidity').textContent = response.main.humidity;
+            document.getElementById('pressure').textContent = response.main.pressure;
+
+            //send off data..
+
+            //Veirfy on the console ( test work )
+            console.log(response.main.temp);
+            console.log(response.main.humidity);
+            console.log(response.main.pressure);
+
+          } 
+          // endif
+
+          else 
+          {
+            console.log("Error in network request: " + req.statusText);
+          } 
+          //end else...
+
+
+          event.preventDefault();
+        })
+
+
+      }//end bindFunction...
+
+
+
+
+    </script>
+  </head>
+  <body>
+
+    <form>
+      <fieldset>
+        <legend>Weather</legend>
+        <label for="City">City</label>
+        <input type="text" name="citySubmit" id="city">
+        <input type="submit" id="citySubmit">
+
+        <br><br>
+        <label for="Zip">Zip</label>
+        <input type="text" name="zipSubmit" id="zip">
+        <input type="submit" id="zipSubmit">
+
+      </fieldset>
+    </form>
+    <div>
+      <h2>Result</h2>
+      <ul>
+        <li><span>Temp:</span><span id="temperature"></span></li>
+        <li><span>Humidity:</span><span id="humidity"></span></li>
+        <li><span>Pressure:</span><span id="pressure"></span></li>
+
+        <!-- <li><span>Original URL:</span><span id="originalUrl"></span></li>
+        <li><span>Short URL:</span><span id="shortUrl"></span></li> -->
+
+
+
+      </ul>
+    </div>
+
+
+
+  </body>
+</html>

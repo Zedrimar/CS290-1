@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      var apiKey = 'AIzaSyCYZXKSccAqZiQf4W6XnegpfYL5O7u72EE';
+
+      document.addEventListener('DOMContentLoaded', bindButtons);
+
+      function bindButtons()
+      {
+        document.getElementById('yourName').addEventListener('click', function(event){
+          	var req = new XMLHttpRequest();
+		    var payload = {firstName:null, lastName:null};
+		    payload.firstName = document.getElementById('firstName').value;
+		    payload.lastName = document.getElementById('lastName').value;
+
+
+
+		    //req.open('POST', 'https://www.googleapis.com/urlshortener/v1/url?key=' + apiKey, true);
+		    req.open('POST', 'http://httpbin.org/post', true);
+
+
+		    req.setRequestHeader('Content-Type', 'application/json');
+		    req.addEventListener('load',function(){
+		      if(req.status >= 200 && req.status < 400){
+		        var response = JSON.parse(req.responseText);
+		        document.getElementById('fullName').textContent = response.data;
+
+		        //For testing only..
+		        console.log("Success....");
+		        console.log(response);
+		      } else {
+		        console.log("Error in network request: " + req.statusText);
+		      }});
+		    req.send(JSON.stringify(payload));
+		    event.preventDefault();
+        })
+      }
+    </script>
+  </head>
+  <body>
+    <form>
+      <fieldset>
+        <legend>Your Name</legend>
+        <label for="firstName">Full Name</label>
+        <input type="text" name="firstName" id="firstName">
+        <!-- <input type="submit" id="yourName"> -->
+
+        <br><br>
+        <label for="lastName">Last Name</label>
+        <input type="text" name="lastName" id="lastName">
+        <input type="submit" id="yourName">
+
+      </fieldset>
+    </form>
+    <div>
+      <h2>Result</h2>
+      <ul>
+        <li><span>Full Name:     </span><span id="fullName"></span></li>
+      </ul>
+    </div>
+  </body>
+</html>
