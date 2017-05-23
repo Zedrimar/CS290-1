@@ -1,0 +1,26 @@
+<!--
+    Joseph Long
+    CS 290, Web Development
+    Spring 2017
+
+    Homework Assignment: GET and POST checker
+
+    Descirption:
+
+        This is a single web application that will receive incoming POST and GET
+        requests.
+
+        It will direct to the root page ("/") and display either a GET or POST along
+        with what is sent with the request.
+
+        Per the homework instructions, I used the boilerplate code to generate the
+        express and handlebars code.
+
+-->
+
+<h1>Get Request Received:</h1>
+<ol type="A">
+  {{#each dataList}}
+    <li>{{this.name}}: {{this.value}}
+  {{/each}}
+</ol>
